@@ -17,6 +17,7 @@ dev = [
     "pytest",
     "coverage",
     "types-requests",
+    "pytest-cov",
 ]
 
 [build-system]
