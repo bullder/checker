@@ -1,4 +1,3 @@
-import pytest
 import hashlib
 from unittest.mock import patch
 import requests
