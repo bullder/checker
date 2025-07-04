@@ -111,9 +111,9 @@ The application is fully containerized. You can build and run it using Docker.
 
 This project uses GitHub Actions to automate the building and publishing of the Docker image.
 
-The workflow is defined in `.github/workflows/main.yml` and has two main jobs:
+The CI/CD pipeline is split into two workflows:
 
-1.  **`lint`**: This job installs dependencies and runs `ruff` and `mypy` to ensure code quality.
-2.  **`build`**: This job depends on the success of the `lint` job. It builds the Docker image and pushes it to the GitHub Container Registry (`ghcr.io`).
+1.  **`quality_checks.yml`**: This reusable workflow (located in `.github/workflows/quality_checks.yml`) performs linting (`ruff`), type checking (`mypy`), and runs tests (`pytest`) with coverage.
+2.  **`main.yml`**: This main workflow (located in `.github/workflows/main.yml`) is triggered on pushes to the `master` branch. It calls the `quality_checks` workflow, and if successful, calls the `build_and_push` workflow to build and push the Docker image to Docker Hub.
 
-The workflow is triggered on every push to the `main` branch.
+The workflow is triggered on every push to the `master` branch.
