@@ -4,7 +4,7 @@ import requests
 
 from url_monitor import get_website_hash
 
-def test_get_website_hash_success():
+def test_get_website_hash_success() -> None:
     mock_content = b"<html><body>Hello World!</body></html>"
     expected_hash = hashlib.sha256(mock_content).hexdigest()
 
@@ -15,7 +15,7 @@ def test_get_website_hash_success():
 
         assert get_website_hash("http://test.com") == expected_hash
 
-def test_get_website_hash_failure():
+def test_get_website_hash_failure() -> None:
     with patch('requests.get') as mock_get:
         mock_get.side_effect = requests.exceptions.RequestException("Test Error")
         assert get_website_hash("http://test.com") is None
