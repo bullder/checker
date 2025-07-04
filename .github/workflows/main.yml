@@ -12,7 +12,6 @@ jobs:
     needs: call-quality-checks
     uses: ./.github/workflows/build_and_push.yml
     with:
-      image_tag: bullder/checker:latest
-    secrets:
       docker_username: ${{ secrets.DOCKER_USERNAME }}
       docker_password: ${{ secrets.DOCKER_PASSWORD }}
+      image_tag: bullder/checker:latest
