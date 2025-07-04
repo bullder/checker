@@ -37,9 +37,4 @@ ignore = ["E501"]
 strict = true
 ignore_missing_imports = true
 
-[tool.uv.scripts]
-setup = "uv venv && uv pip install -e .[dev]"
-run = "uv run python url_monitor.py"
-check = ["uv run ruff check .", "uv run mypy ."]
-lint = "uv run ruff check ."
-type-check = "uv run mypy ."
+

@@ -12,6 +12,7 @@ URL_TO_MONITOR = os.getenv("URL_TO_MONITOR")
 TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
 TELEGRAM_CHAT_ID = os.getenv("TELEGRAM_CHAT_ID")
 CHECK_INTERVAL = int(os.getenv("CHECK_INTERVAL", 60))  # Time in seconds between checks
+NOTIFY_ON_NO_CHANGE = os.getenv("NOTIFY_ON_NO_CHANGE", "false").lower() == "true"
 
 
 def get_website_hash(url):
@@ -60,6 +61,13 @@ def main():
             last_hash = current_hash
         elif not current_hash:
             print("Could not fetch website content. Will try again later.")
+        elif NOTIFY_ON_NO_CHANGE:
+            print(f"No change detected at {URL_TO_MONITOR}. Sending health check notification.")
+            send_telegram_notification(
+                bot,
+                TELEGRAM_CHAT_ID,
+                f"Health check: No change detected on {URL_TO_MONITOR}.",
+            )
 
 if __name__ == "__main__":
     main()

@@ -14,11 +14,11 @@ jobs:
         with:
           python-version: '3.11'
       - name: Install dependencies
-        run: pip install .[dev]
-      - name: Run ruff
-        run: ruff check .
-      - name: Run mypy
-        run: mypy .
+        run: make setup
+      - name: Run lint
+        run: make lint
+      - name: Run type-check
+        run: make type-check
 
   build:
     needs: lint

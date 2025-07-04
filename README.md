@@ -47,39 +47,39 @@ The project is containerized using Docker and includes a GitHub Actions workflow
 
 3.  **Set up the environment and install dependencies:**
 
-    This command uses the `setup` script defined in `pyproject.toml` to create a virtual environment and install all required dependencies.
+    This command uses the `setup` target in the `Makefile` to create a virtual environment and install all required dependencies.
 
     ```bash
-    uv run setup
+    make setup
     ```
 
 ### Running the Application
 
-To start the monitoring script, use the following `uv` command:
+To start the monitoring script, use the following `make` command:
 
 ```bash
-uv run
+make run
 ```
 
 The script will load the environment variables from the `.env` file and begin monitoring the URL.
 
 ### Development Tasks
 
-This project uses `ruff` for linting and `mypy` for static type checking. You can run these checks using the provided `uv` scripts:
+This project uses `ruff` for linting and `mypy` for static type checking. You can run these checks using the provided `make` commands:
 
 - **Run all checks:**
   ```bash
-  uv run check
+  make check
   ```
 
 - **Run only the linter:**
   ```bash
-  uv run lint
+  make lint
   ```
 
 - **Run only the type checker:**
   ```bash
-  uv run type-check
+  make type-check
   ```
 
 ## Docker
@@ -114,4 +114,3 @@ The workflow is defined in `.github/workflows/main.yml` and has two main jobs:
 2.  **`build`**: This job depends on the success of the `lint` job. It builds the Docker image and pushes it to the GitHub Container Registry (`ghcr.io`).
 
 The workflow is triggered on every push to the `main` branch.
-
