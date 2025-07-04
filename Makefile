@@ -1,4 +1,4 @@
-.PHONY: setup run check lint type-check
+.PHONY: setup run check lint type-check test coverage
 
 setup:
 	uv venv
@@ -16,3 +16,10 @@ lint:
 
 type-check:
 	uv run mypy .
+
+test:
+	uv run pytest
+
+coverage:
+	uv run pytest --cov=url_monitor --cov-report=term-missing
+	uv run coverage html
