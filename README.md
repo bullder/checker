@@ -1,7 +1,7 @@
 # URL Change Monitor with Telegram Notifications
 
-[![Quality Checks](https://github.com/YOUR_USERNAME/YOUR_REPOSITORY/actions/workflows/main.yml/badge.svg?branch=master&event=push&job=quality_checks)](https://github.com/YOUR_USERNAME/YOUR_REPOSITORY/actions/workflows/main.yml)
-[![Docker Image CI](https://github.com/YOUR_USERNAME/YOUR_REPOSITORY/actions/workflows/main.yml/badge.svg?branch=master&event=push&job=build)](https://github.com/YOUR_USERNAME/YOUR_REPOSITORY/actions/workflows/main.yml)
+[![Quality Checks](https://github.com/bullder/checker/actions/workflows/main.yml/badge.svg?branch=master&event=push&job=quality_checks)](https://github.com/bullder/checker/actions/workflows/main.yml)
+[![Docker Image CI](https://github.com/bullder/checker/actions/workflows/main.yml/badge.svg?branch=master&event=push&job=build)](https://github.com/bullder/checker/actions/workflows/main.yml)
 
 This project contains a Python script that monitors a specified URL for any content changes and sends a notification to a Telegram chat when a change is detected.
 
