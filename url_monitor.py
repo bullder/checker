@@ -1,3 +1,4 @@
+import asyncio
 import os
 import time
 import hashlib
@@ -25,15 +26,15 @@ def get_website_hash(url):
         print(f"Error fetching {url}: {e}")
         return None
 
-def send_telegram_notification(bot, chat_id, message):
+async def send_telegram_notification(bot, chat_id, message):
     """Sends a message to a Telegram chat."""
     try:
-        bot.send_message(chat_id=chat_id, text=message)
+        await bot.send_message(chat_id=chat_id, text=message)
         print("Telegram notification sent.")
     except telegram.error.TelegramError as e:
         print(f"Error sending Telegram notification: {e}")
 
-def main():
+async def main():
     """Main function to monitor the website."""
     if not all([URL_TO_MONITOR, TELEGRAM_BOT_TOKEN, TELEGRAM_CHAT_ID]):
         print("Please set the environment variables URL_TO_MONITOR, TELEGRAM_BOT_TOKEN, and TELEGRAM_CHAT_ID.")
@@ -53,7 +54,7 @@ def main():
         if current_hash and current_hash != last_hash:
             print(f"Change detected at {URL_TO_MONITOR}")
             print(f"New hash: {current_hash}")
-            send_telegram_notification(
+            await send_telegram_notification(
                 bot,
                 TELEGRAM_CHAT_ID,
                 f"Change detected on {URL_TO_MONITOR}! A new version of the page is available.",
@@ -63,11 +64,11 @@ def main():
             print("Could not fetch website content. Will try again later.")
         elif NOTIFY_ON_NO_CHANGE:
             print(f"No change detected at {URL_TO_MONITOR}. Sending health check notification.")
-            send_telegram_notification(
+            await send_telegram_notification(
                 bot,
                 TELEGRAM_CHAT_ID,
                 f"Health check: No change detected on {URL_TO_MONITOR}.",
             )
 
 if __name__ == "__main__":
-    main()
+    asyncio.run(main())
